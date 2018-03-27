@@ -116,12 +116,7 @@ namespace CherryBBS
 
         public bool Executable()
         {
-            if (SqlConnection == null)
-                return false;
-            else if (CommandInstance == null)
-                return false;
-            else
-                return true;
+            return !(SqlConnection == null || CommandInstance == null);
         }
 
         public DataTable Execute()
@@ -160,12 +155,7 @@ namespace CherryBBS
 
         public object ExecuteScalar()
         {
-            if (SqlConnection == null)
-                return null;
-            else if (CommandInstance == null)
-                return null;
-            else
-                return CommandInstance.ExecuteScalar();
+            return SqlConnection == null || CommandInstance == null ? null : CommandInstance.ExecuteScalar();
         }
 
         public void Dispose()
